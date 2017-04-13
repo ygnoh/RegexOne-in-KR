@@ -16,9 +16,9 @@ The character **\d** can be used in place of **any digit from 0 to 9**. The prec
 
 There is the concept of a **wildcard**, which is represented by the .(dot) metacharacter, and can **match any single character** (letter, digit, whitespace, everything).
 
-In order to specifically match a period, you need to escape the dot by using a slash **\.** accordingly.
+In order to specifically match a period, you need to escape the dot by using a slash **\\.** accordingly.
 
-즉, 그냥 **.**(dot)을 하면 모든 character에 대해 매치되고, **\.**을 하면 **.**(dot)만을 매칭한다.
+즉, 그냥 **.**(dot)을 하면 모든 character에 대해 매치되고, **\\.**을 하면 **.**(dot)만을 매칭한다.
 
 ### Lesson 3: Matching specific characters
 
@@ -28,7 +28,7 @@ There is a method for **matching specific characters** using regular expressions
 
 For example, the pattern **[abc]** will only match a **single** a, b, or c letter and nothing else.
 
-즉, **[abc]**의 경우, a, b, c중에 **하나에만** 매칭된다.
+즉, __[abc]__의 경우, a, b, c중에 **하나에만** 매칭된다.
 
 ### Lesson 4: Excluding specific characters
 
@@ -51,7 +51,7 @@ Multiple character ranges can also be used in the same set of brackets, along wi
 
 An example of this is the alphanumeric **\w** metacharacter which is equivalent to the character range **[A-Za-z0-9_]** and often used to match characters in English text.
 
-즉 하나의 range **[...]**는 하나의 character에 매칭된다.
+즉 하나의 range __[...]__는 하나의 character에 매칭된다.
 
 
 ### Lesson 6: Catching some zzz's
