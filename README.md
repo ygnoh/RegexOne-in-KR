@@ -1,5 +1,7 @@
 ## Regex from [RegexOne](http://regexone.com)
 
+**markdown과 한글의 호환 문제 때문에(정말?) 몇 가지 markdown 문제가 존재할 수 있습니다.**
+
 ### Lesson 1. An Introduction, and the ABCs
 
 Regualr expressions are extermely useful in extracting information from text such as code, log files, spreadheets, or even documents.
