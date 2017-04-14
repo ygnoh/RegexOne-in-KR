@@ -107,10 +107,36 @@ Use a slash **\?** to match a plain question mark character in a string.
 
 ### Lesson 9: All this whitespace
 
-The most common forms of whitespace you will use with regular expressions are the **space** ( ), the **tab** (**\t**), the **new line** (**\n**) and the carriage return (**\r**) (useful in Windows environments), and these special characters match each of their respective whitespaces.
+The most common forms of whitespace you will use with regular expressions are the **space** ( ), the **tab (\t)**, the **new line (\n)** and the carriage return (**\r**) (useful in Windows environments), and these special characters match each of their respective whitespaces.
 
 In addition, a **whitespace** special character **\s** will match **any** of the specific whitespaces above and is extremely useful when dealing with raw input text.
 
 `\d\.\s+abc`는 어떤 것들과 매치될까?
+
+---
+
+### Lesson 10: Starting and ending
+
+Imagine for example we wanted to match the word "success" in a log file. We certainly don't want that pattern to match a line that says "Error: unsuccessful operation"!
+
+One way to tighten our patterns is to define a pattern that describes both the **start and the end of the line** using the special **^ (hat)** and **$ (dollar sign)** metacharacters.
+
+In the example above, we can use the pattern **^success** to match **only** a line that begins with the word "success", but not the line "Error: unsuccessful operation".
+
+> Note that this is different than the hat used inside a set of bracket **[^...]** for excluding characters.
+
+And if you combine both the hat and the dollar sign, you create a pattern that matches the whole line completely at the beginning and end.
+
+---
+
+### Lesson 11: Match groups
+
+Regular expressions allow us to not just match text but also to **extract information for further processing**.
+
+This is done by defining **groups of characters** and capturing them using the special parentheses **(** and **)** metacharacters.
+
+Any subpattern inside a pair of parentheses will be **captured** as a group. In practice, this can be used to extract information like phone numbers or emails from all sorts of data.
+
+Imagine for example that you had a command line tool to list all the image files you have in the cloud. You could then use a pattern such as **^(IMG\d+\.png)$** to capture and extract the full filename, but if you only wanted to capture the filename without the extension, you could use the pattern **^(IMG\d+)\.png$** which only captures the part before the period.
 
 ---
