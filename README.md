@@ -92,3 +92,25 @@ __\d+__(1 or more) is called *Kleene Plus*
 For example **a+** (one or more a's), **[abc]+** (one or more of any a, b, or c character) and __.*__ (zero or more of any character).
 
 ---
+
+### Lesson 8: Characters optional
+
+Another quantifier that is really common when matching and extracting text is the **?** (question mark) metacharacter which denotes **optionality**.
+
+This metacharacter allows you to match either zero or one of the preceding character or group.
+
+For example, the pattern **ab?c** will match either the strings "abc" or "ac" because the b is considered optional.
+
+Use a slash **\?** to match a plain question mark character in a string.
+
+---
+
+### Lesson 9: All this whitespace
+
+The most common forms of whitespace you will use with regular expressions are the **space** ( ), the **tab** (**\t**), the **new line** (**\n**) and the carriage return (**\r**) (useful in Windows environments), and these special characters match each of their respective whitespaces.
+
+In addition, a **whitespace** special character **\s** will match **any** of the specific whitespaces above and is extremely useful when dealing with raw input text.
+
+`\d\.\s+abc`는 어떤 것들과 매치될까?
+
+---
