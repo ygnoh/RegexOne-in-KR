@@ -2,134 +2,139 @@
 
 **markdown과 한글의 호환 문제 때문에(정말?) 몇 가지 markdown 문제가 존재할 수 있습니다.**
 
-### Lesson 1. An Introduction, and the ABCs
+### Lesson 1. 소개
 
-Regualr expressions are extermely useful in extracting information from text such as code, log files, spreadheets, or even documents.
+정규표현식(regular expression, regexp, 또는 regex)은 코드나 로그파일, 스프레드시트 등의 텍스트에서 정보를 추출하는데에 매우 유용합니다.
 
-**Everything is essentially a character.**
+**모든 것은 근본적으로 문자(character)입니다.**
 
 ---
 
 ### Lesson 1.5: The 123s
 
-In fact, numbers 0-9 are also just characters.
+실제로, 0~9로 이루어진 숫자들도 그저 문자들에 불과합니다.
 
-The character **\d** can be used in place of **any digit from 0 to 9**. The preceding slash distinguishes it from the simple **d** character and indicates that it is a metacharacter.
-
----
-
-### Lesson 2: The Dot
-
-There is the concept of a **wildcard**, which is represented by the .(dot) metacharacter, and can **match any single character** (letter, digit, whitespace, everything).
-
-In order to specifically match a period, you need to escape the dot by using a slash **\\.** accordingly.
-
-즉, 그냥 **.**(dot)을 하면 모든 character에 대해 매치되고, **\\.**을 하면 **.**(dot)만을 매칭한다.
+**\d**는 0에서 9까지의 숫자를 매치할 수 있습니다. **\**는 문자 d와 구분하기 위해 쓰이고, 그것이 메타 문자(metacharacter)라는 것을 알려줍니다.
 
 ---
 
-### Lesson 3: Matching specific characters
+### Lesson 2: 마침표(.)의 쓰임
 
-If we are matching phone numbers for example, we don't want to validate the letters "(abc) def-ghij" as being a valid number!
+**.**(마침표)은 어떠한 문자와도 매치됩니다. 문자, 숫자, 공백 등 모든 것과 매치됩니다.
 
-There is a method for **matching specific characters** using regular expressions, by defining them inside **square brackets**.
+마침표를 매치시키고 싶다면, 슬래시를 이용하여야합니다. **\.**은 마침표와 매치됩니다.
 
-For example, the pattern **[abc]** will only match a **single** a, b, or c letter and nothing else.
-
-즉, **[abc]**의 경우, a, b, c중에 **하나에만** 매칭된다.
+즉, 그냥 **.**(마침표)를 하면 모든 문자에 대해 매치되고, **\.**을 하면 마침표만을 매칭합니다.
 
 ---
 
-### Lesson 4: Excluding specific characters
+### Lesson 3: 특정 문자와 매치하기
 
-특정 character를 제외하고 싶을 수도 있다.
+예를 들어 우리가 휴대폰 번호를 매칭하고 싶을 때, "(abc) def-ghij" 등은 적절한 숫자가 아닐 겁니다.
 
-To represent this, we use a similar expression that **excludes specific characters** using the **square brackets** and the **^**(hat).
+이런 경우, 대괄호를 이용한다면 특정 문자들을 매칭시킬 수 있습니다.
 
-For example, the pattern **[^abc]** will match any **single** character **except for** the letters a, b, or c.
+하나의 **[...]**는 하나의 문자와 매칭됩니다.
 
----
+예를 들면, **[abc]** 패턴은 a, b, c 중의 **하나의** 문자와만 매칭이 됩니다.
 
-### Lesson 5: Character ranges
-
-What if we want to match a character that can be in a sequential range characters?
-
-Luckily, when using the square bracket notation, there is a shorthand for matching a character in list of **sequential characters** by using the **dash** to indicate a character range.
-
-For example, the pattern **[0-6]** will only match any single digit character from zero to six, and nothing else.
-
-Multiple character ranges can also be used in the same set of brackets, along with individual characters.
-
-An example of this is the alphanumeric **\w** metacharacter which is equivalent to the character range **[A-Za-z0-9_]** and often used to match characters in English text.
-
-즉 하나의 range **[...]**는 하나의 character에 매칭된다.
 
 ---
 
-### Lesson 6: Catching some zzz's
-*Note: Some parts of the repetition syntax below isn't supported in all regular expression implementations.*
+### Lesson 4: 특정 문자 제외시키기
 
-How about the number of repetitions of characters that we want to match?
+특정 character를 제외하고 싶을 수도 있습니다.
 
-A convenient way is to specify how many repetitions of each character we want using the **curly braces** notation.
+이런 경우에도 비슷하게, 대괄호와 **^ (hat)**을 이용하여 특정 문자들을 제외하여 매칭을 찾을 수도 있습니다.
 
-For example, **a{3}** will match the **a** character exactly three times.
-
-**[wxy]{5}** (five characters, each of which can be a **w**, **x**, or **y**)
+예를 들어, **[^abc]**는 a, b, c를 **제외한** 한 문자와 매칭이 됩니다.
 
 ---
 
-### Lesson 7: Mr. Kleene, Mr. Kleene
+### Lesson 5: 문자의 범위
 
-*Kleene는 정규표현식을 제안한 수학자 이름이다.*
+원하는 범위 내에 속하는 문자와 매치하고 싶다면 어떻게 해야할까요?
 
-A powerful concept in regular expressions is the ability to match an arbitrary number of characters.
+운이 좋게도, 대괄호와 **-(dash)**를 사용한다면 손쉽게 처리할 수 있습니다.
 
-__\d*__(0 or more) is called *Kleene Star*
+예를 들어, **[0-6]** 패턴은 0에서 6사이의 한 문자와만 매칭됩니다.
 
-__\d+__(1 or more) is called *Kleene Plus*
+또한 여러 개의 범위도 한 대괄호 내에서 사용될 수 있습니다.
 
-For example **a+** (one or more a's), **[abc]+** (one or more of any a, b, or c character) and __.*__ (zero or more of any character).
+즉, **[A-Za-z0-9_]**은 A-Z, a-z, 0-9, _ 중에서 한 문자와 매치됩니다.
 
----
-
-### Lesson 8: Characters optional
-
-Another quantifier that is really common when matching and extracting text is the **?** (question mark) metacharacter which denotes **optionality**.
-
-This metacharacter allows you to match either zero or one of the preceding character or group.
-
-For example, the pattern **ab?c** will match either the strings "abc" or "ac" because the b is considered optional.
-
-Use a slash **\?** to match a plain question mark character in a string.
+참고로 **\w**와 완전히 일치하고, 영어 텍스트에서 문자를 매치시키기 위해 자주 쓰입니다.
 
 ---
 
-### Lesson 9: All this whitespace
+### Lesson 6: 특정 횟수로 반복되는 문자 매치시키기
 
-The most common forms of whitespace you will use with regular expressions are the **space** ( ), the **tab (\t)**, the **new line (\n)** and the carriage return (**\r**) (useful in Windows environments), and these special characters match each of their respective whitespaces.
+*주의: 이 lesson의 몇몇 부분은 모든 정규식 implementation에 대해 지원되지 않을 수도 있습니다.*
 
-In addition, a **whitespace** special character **\s** will match **any** of the specific whitespaces above and is extremely useful when dealing with raw input text.
+만약 우리가 반복 문자를 매치하고 싶다면 어떻게 해야할까요?
 
-`\d\.\s+abc`는 어떤 것들과 매치될까?
+한가지 간편한 방법은 우리가 원하는 각각의 문자가 몇번이나 반복 되는지를 중괄호를 통해 구체화 해주는 것입니다.
 
----
+예를 들어, **a{3}**은 **a**가 정확히 3번 반복되는 경우에만 매치될 것입니다.
 
-### Lesson 10: Starting and ending
-
-Imagine for example we wanted to match the word "success" in a log file. We certainly don't want that pattern to match a line that says "Error: unsuccessful operation"!
-
-One way to tighten our patterns is to define a pattern that describes both the **start and the end of the line** using the special **^ (hat)** and **$ (dollar sign)** metacharacters.
-
-In the example above, we can use the pattern **^success** to match **only** a line that begins with the word "success", but not the line "Error: unsuccessful operation".
-
-> Note that this is different than the hat used inside a set of bracket **[^...]** for excluding characters.
-
-And if you combine both the hat and the dollar sign, you create a pattern that matches the whole line completely at the beginning and end.
+더 나아가서, **[wxy]{5}**은 **x**, **y**, **z** 문자들이 5번 반복되는 경우에 매치될 것입니다.
 
 ---
 
-### Lesson 11: Match groups
+### Lesson 7: 임의의 횟수로 반복되는 문자 매치시키기
+
+*Kleene: 정규표현식을 제안한 미국의 수학자.*
+
+정규표현식의 한 가지 강력한 기능은 임의의 횟수로 반복되는 문자를 매치시킬 수 있다는 것입니다.
+
+>__\d*__(0 이상)는 *Kleene Star*라고 부릅니다.
+>__\d+__(1 이상)은 *Kleene Plus*라고 부릅니다.
+
+예를 들어서, **a+**는 한번 이상 **a**가 반복되는 경우 매치되고, **[abc]+**는 **a** 또는 **b** 또는 **c**가 한번 이상 반복될 때 매치됩니다.
+
+또한, __.*__는 어떠한 문자든 0번 이상 반복될 때 매치됩니다.
+
+---
+
+### Lesson 8: 문자를 선택적으로 매치시키기
+
+문자의 반복 횟수와 관련하여 또 다른, 매우 자주 쓰이는 것은 **?** 입니다.
+
+이 매타 문자는 **?** 앞의 문자 혹은 그룹이 0번, 또는 1번 등장하는 것을 매치합니다.
+
+예를 들어서, **ab?c**는 **abc** 또는 **ac**와 매치됩니다. 왜냐하면 **b**는 **?**에 의해 선택적으로 고려되기 때문입니다.
+
+만약 진짜 물음표 "?"를 매치시키고 싶다면, 슬래시를 사용하여 **\?**를 통해 매치시킬 수 있습니다.
+
+---
+
+### Lesson 9: 공백 매치시키기
+
+정규표현식과 함께 쓰이는 가장 흔한 공백의 형태는 **space ( )**, **tab (\t)**, **new line (\n)**, 그리고 windows에서 유용한 **return (\r)** 입니다.
+
+또한, 이런 공백들은 위의 괄호 안에 적힌 각자의 패턴에 의해 매치됩니다.
+
+추가적으로, **\s**는 위의 제시된 모든 공백들과 매치할 수 있는데, 이것은 raw input 텍스트에 대해 진짜 매우 엄청 유용합니다.
+
+> **Quiz**. `\d\.\s+abc`는 어떤 것들과 매치할 수 있을까요?
+
+---
+
+### Lesson 10: 처음과 시작 지정하기
+
+우리가 "success"라는 단어를 로그 파일에서 매치시키고 싶다고 생각해봅시다. 당연히 우리는 해당 패턴이 "Error: unsuccessful operation" 같은 것들에 매치되게 하고 싶지는 않을 겁니다.
+
+패턴을 확실히 하는 한 가지 방법은 특별한 메타 문자 **^ (hat)**과 **$**을 이용해서 처음과 끝을 명시해주는 것입니다.
+
+위의 예에서, **^success**라는 패턴을 통해 오직 success로 시작하는 줄만 매치시킬 수 있습니다.
+
+> **[^...]**에 쓰였던 **^**과는 다르다는 것에 주의합시다.
+
+만약 **^**, **$**를 모두 사용한다면, 완전하게 처음과 끝이 매치되는 줄만 매치할 수 있습니다.
+
+---
+
+### Lesson 11: 그룹 단위로 매치시키기
 
 Regular expressions allow us to not just match text but also to **extract information for further processing**.
 
