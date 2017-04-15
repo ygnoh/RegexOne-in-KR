@@ -140,3 +140,40 @@ Any subpattern inside a pair of parentheses will be **captured** as a group. In 
 Imagine for example that you had a command line tool to list all the image files you have in the cloud. You could then use a pattern such as **^(IMG\d+\.png)$** to capture and extract the full filename, but if you only wanted to capture the filename without the extension, you could use the pattern **^(IMG\d+)\.png$** which only captures the part before the period.
 
 ---
+
+### Lesson 12: Nested groups
+
+When you are working with complex data, you can easily find yourself having to extract multiple layers of information, which can result in nested groups.
+
+If each of image files had a sequential picture number in the filename, you could extract both the filename and the picture number using the same pattern by writing an expression like **^(IMG(\d+))\.png$** (using a nested parenthesis to capture the digits).
+
+---
+
+### Lesson 13: More group work
+
+For example, if I knew that a phone number may or may not contain an area code, the right pattern would test for the existence of the whole group of digits **(\d{3})?** and not the individual characters themselves (which would be wrong).
+
+grouping을 통해 한 글자 단위의 연산이 아닌, 한 group단위의 연산을 가능하게 한다.
+
+---
+
+### Lesson 14: It's all conditional
+
+Specifically when using groups, you can use the **| (logical OR, aka. the pipe)** to denote **different possible sets of characters**.
+
+For example, **([cb]ats*|[dh]ogs?)** would match either cats or bats, or, dogs or hogs.
+
+Writing patterns with many conditions can be hard to read, so you should consider making them separate patterns if they get too complex.
+
+---
+
+### Lesson 15: Other special characters
+
+Regular expressions provides a way of specifying the opposite sets of each of these metacharacters by using their upper case letters.
+
+For example, **\D** represents any **non-digit** character, **\S** any **non-whitespace** character, and **\W** any **non-alphanumeric** character (such as punctuation).
+
+Additionally, there is a special metacharacter **\b** which matches the boundary between a word and a non-word character. It's most useful in capturing entire words (for example by using the pattern **\w+\b**).
+
+One concept that we will not explore in great detail in these lessons is **back referencing**, mostly because it varies depending on the implementation. However, many systems allow you to reference your captured groups by using **\0** (usually the full matched text), **\1** (group 1), **\2** (group 2), etc.
+
