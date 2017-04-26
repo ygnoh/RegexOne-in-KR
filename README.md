@@ -22,9 +22,9 @@
 
 __.__(마침표)은 어떠한 문자와도 매치됩니다. 문자, 숫자, 공백 등 모든 것과 매치됩니다.
 
-마침표를 매치시키고 싶다면, 슬래시를 이용하여야합니다. **\.**은 마침표와 매치됩니다.
+마침표를 매치시키고 싶다면, 슬래시를 이용하여야합니다. __\.__은 마침표와 매치됩니다.
 
-즉, 그냥 __.__(마침표)를 하면 모든 문자에 대해 매치되고, **\.**을 하면 마침표만을 매칭합니다.
+즉, 그냥 __.__(마침표)를 하면 모든 문자에 대해 매치되고, __\.__을 하면 마침표만을 매칭합니다.
 
 ---
 
@@ -135,21 +135,21 @@ __.__(마침표)은 어떠한 문자와도 매치됩니다. 문자, 숫자, 공�
 
 ### Lesson 11: 그룹 단위로 매치시키기
 
-Regular expressions allow us to not just match text but also to **extract information for further processing**.
+정규표현식은 문장 매칭 뿐만 아니라, **추가적인 프로세싱을 위한 정보를 추출**하는 것도 가능하게 해줍니다.
 
-This is done by defining **groups of characters** and capturing them using the special parentheses **(** and **)** metacharacters.
+이것은 **문자들의 그룹**을 정의하고 그들을 메타문자인 괄호 **(**, **)**를 통해 캡쳐함으로써 가능합니다.
 
-Any subpattern inside a pair of parentheses will be **captured** as a group. In practice, this can be used to extract information like phone numbers or emails from all sorts of data.
+괄호 쌍 사이에 있는 부분패턴은 그룹으로서 캡쳐될 것입니다. 실제적으로 이것은 전화번호나 이메일 등을 데이터로부터 추출하는데에 사용될 수 있습니다.
 
-Imagine for example that you had a command line tool to list all the image files you have in the cloud. You could then use a pattern such as **^(IMG\d+\.png)$** to capture and extract the full filename, but if you only wanted to capture the filename without the extension, you could use the pattern **^(IMG\d+)\.png$** which only captures the part before the period.
+당신의 클라우드에 저장된 이미지 파일들을 커맨드 라인 도구를 사용하여 출력한다고 생각해봅시다. 파일 이름을 캡쳐하고 추출하기 위해 당신은 **^(IMG\d+\.png)$**과 같은 패턴을 사용할 것입니다. 하지만 만약 당신이 확장자를 제외하고 파일 이름만을 캡쳐하고 싶다면 **^(IMG\d+)\.png$**와 같은 패턴들을 사용할 것입니다.
 
 ---
 
-### Lesson 12: Nested groups
+### Lesson 12: 중첩 그룹
 
-When you are working with complex data, you can easily find yourself having to extract multiple layers of information, which can result in nested groups.
+복잡한 데이터를 다룰 때, 많은 경우, 여러 층의 정보를 추출해야만 할 것입니다. 이것은 중첩 그룹이 될 수 있습니다.
 
-If each of image files had a sequential picture number in the filename, you could extract both the filename and the picture number using the same pattern by writing an expression like **^(IMG(\d+))\.png$** (using a nested parenthesis to capture the digits).
+만약 이미지 파일이 그들 파일 이름에 순차적인 번호를 가지고 있다면, 당신은 파일 이름과 사진 번호를 하나의 패턴을 사용해서 추출할 수 있습니다. **^(IMG(\d+))\.png$**와 같은 패턴을 통해서 말입니다. (숫자를 캡쳐하기 위해 중첩 괄호를 사용했습니다.)
 
 ---
 
