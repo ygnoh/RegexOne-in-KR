@@ -153,31 +153,30 @@ __.__(마침표)은 어떠한 문자와도 매치됩니다. 문자, 숫자, 공�
 
 ---
 
-### Lesson 13: More group work
+### Lesson 13: 그룹을 통한 더 많은 연산
 
-For example, if I knew that a phone number may or may not contain an area code, the right pattern would test for the existence of the whole group of digits **(\d{3})?** and not the individual characters themselves (which would be wrong).
+만약 어떤 전화번호가 지역번호를 포함하는지 아닌지를 알고 있다면, 올바른 패턴은 전체 숫자 그룹 **(\d{3})?**의 존재를 테스트할 것입니다. 하지만, 각 문자에 대해서는 테스트하지 않을 것입니다.
 
-grouping을 통해 한 글자 단위의 연산이 아닌, 한 group단위의 연산을 가능하게 한다.
-
----
-
-### Lesson 14: It's all conditional
-
-Specifically when using groups, you can use the **| (logical OR, aka. the pipe)** to denote **different possible sets of characters**.
-
-For example, **([cb]ats*|[dh]ogs?)** would match either cats or bats, or, dogs or hogs.
-
-Writing patterns with many conditions can be hard to read, so you should consider making them separate patterns if they get too complex.
+이는 grouping을 통해 한 글자 단위의 연산이 아닌, 한 group단위의 연산이 가능하다는 것을 의미합니다.
 
 ---
 
-### Lesson 15: Other special characters
+### Lesson 14: 모두 조건부다.
 
-Regular expressions provides a way of specifying the opposite sets of each of these metacharacters by using their upper case letters.
+특히 group을 이용할 때, 당신은 두 문자 집합 간의 다를 수 있다는 가능성 명시하기 위해 **|(logical OR, aka. the pipe)**를 사용할 수 있습니다.
 
-For example, **\D** represents any **non-digit** character, **\S** any **non-whitespace** character, and **\W** any **non-alphanumeric** character (such as punctuation).
+예를 들어서, **([cb]ats*|[dh]ogs?)**는 cats 또는 bats, 아니면 dogs 또는 hogs와 매치될 것입니다.
 
-Additionally, there is a special metacharacter **\b** which matches the boundary between a word and a non-word character. It's most useful in capturing entire words (for example by using the pattern **\w+\b**).
+너무 많은 조건을 한 패턴에 사용하는 것은 가독성을 떨어뜨릴 수 있습니다. 따라서 너무 복잡하다면, 패턴을 여러개로 쪼개는 것을 고려해봐야만 합니다.
 
-One concept that we will not explore in great detail in these lessons is **back referencing**, mostly because it varies depending on the implementation. However, many systems allow you to reference your captured groups by using **\0** (usually the full matched text), **\1** (group 1), **\2** (group 2), etc.
+---
 
+### Lesson 15: 그외의 특별한 문자들
+
+정규표현식은 대문자를 사용함으로써 각각의 메타문자의 정반대 집합을 명시할 수 있도록 제공합니다.
+
+예를 들어, **\D**는 숫자가 아닌 문자, **\S**는 공백이 아닌 문자, **\W**는 알파벳과 숫자를 제외한 문자(마침표 등)를 의미합니다.
+
+추가적으로, 단어와 단어가 아닌 문자(non-word)의 경계와 매치되는 **\b**라는 특별한 메타문자도 있습니다. 이것은 **\w+\b** 등과 같은 패턴을 이용하여 전체 단어를 캡쳐하는 데에 매우 유용합니다.
+
+이번에 **back referencing**에 대해서는 자세히 다루지 않을 겁니다. 왜냐하면 그것은 구현 방식에 따라 다르기 때문입니다. 그러나 많은 시스템은 **\0** (보통 전체 매치되는 텍스트), **\1**(그룹 1), **\2** (그룹 2) 등과 같은 것을 사용함으로써, 당신이 캡쳐한 그룹을 참조하는 것을 가능케 합니다.
