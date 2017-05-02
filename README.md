@@ -2,6 +2,8 @@
 
 **markdown과 한글의 호환 문제 때문에(정말?) 몇 가지 markdown 문제가 존재할 수 있습니다.**
 
+**관련 문제들은 [여기](./Problems.md)에서 풀어보실 수 있습니다.**
+
 ### Lesson 1. 소개
 
 정규표현식(regular expression, regexp, 또는 regex)은 코드나 로그파일, 스프레드시트 등의 텍스트에서 정보를 추출하는데에 매우 유용합니다.
